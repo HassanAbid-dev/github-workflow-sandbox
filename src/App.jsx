@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import GithubWorkflowSandbox from './components/GithubWorkflowSandbox';
 
 const SANDBOX_USER = {
@@ -13,8 +13,12 @@ export default function App() {
     () => window.matchMedia?.('(prefers-color-scheme: dark)').matches,
   );
 
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+  }, [dark]);
+
   return (
-    <div className="sandbox-shell" data-theme={dark ? 'dark' : 'light'}>
+    <div className="sandbox-shell">
       <header className="sandbox-header">
         <span className="sandbox-title">GitHub Workflow Sandbox</span>
         <div className="sandbox-header-right">
